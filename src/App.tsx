@@ -12,7 +12,7 @@ function App() {
     useDayCountInfo(service)
 
   return (
-    <main className="border px-2 md:px-auto py-16 rounded border-slate-200  mt-3 md:mt-12 space-y-12 mx-2 md:mx-auto max-w-4xl flex flex-col items-center">
+    <main className="border px-2 md:px-auto py-16 rounded border-slate-200  mt-48 md:mt-12 space-y-12 mx-2 md:mx-auto max-w-4xl flex flex-col items-center">
       <section className="flex flex-col items-center">
         <Tally5 size="50" />
         <h1 className="text-1xl md:text-2xl text-center md:text-start font-bold">
