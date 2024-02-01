@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# CONTADOR DE DIAS PRATICANDO HO'OPONOPONO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Esta é uma aplicação desenvolvida para contagem
+ de dias em que foi realizada a pratica do ho'oponopono que 
+ permite além de incrementar os dias também resetar  as informações. As informações são salvas no localstorage. 
 
-Currently, two official plugins are available:
+## 👨‍💻 Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Tailwindcss (Ferramenta para produtividade na estilização)
+- React
+- Shadcn
 
-## Expanding the ESLint configuration
+## Para subir o projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- ter o node 18 instalado na máquina
+- ter o gerenciador de pacote `pnpm` 
+- instalar as dependências com `pnpm i`
+- rodar o projeto com `pnpm dev`
 
-- Configure the top-level `parserOptions` property like this:
+OBS: caso não queira usar o `pnpm`, poderá usar qualquer gerenciador de pacotes.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 🌐 Links úteis
+[NodeJS](https://nodejs.org/en/download)
+[Tailwind](https://tailwindcss.com/)
+[Shadcn](https://ui.shadcn.com/)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 🧑‍💻 Igor Alves Rodrigues
+
+[<img
+  src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/igor-alves-rodrigues-7941a116b/)
+[<img
+  src=" https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />](https://gthub.com/igoralvesr)
+[<img
+  src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />](http://wa.me/5548998434969)
+[<img src="https://img.shields.io/website-up-down-green-red/http/shields.io.svg"
+  height="28" />](https://igoralvesr.github.io)
