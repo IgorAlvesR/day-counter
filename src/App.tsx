@@ -1,4 +1,4 @@
-import { Toaster } from 'sonner'
+import { Toaster, toast } from 'sonner'
 import AlertConfirm from './components/AlertConfirm'
 import CardAccountantInfo from './components/CardAccountantInfo'
 import { Button } from './components/ui/button'
@@ -22,6 +22,13 @@ function App() {
     const total = saveDayCountInfo()
     if (total && !!isMultipleOfTen(total)) {
       handleActiveConfetti()
+      toast.success(
+        `Parabéns, você completou ${total} dias praticando Ho'oponopono!`,
+        {
+          position: 'top-center',
+          style: { background: '#009688', color: 'white' },
+        },
+      )
     }
   }
 
