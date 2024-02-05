@@ -6,7 +6,7 @@ type CardAccountantInfoProps = {
 function CardAccountantInfo({ lastDayHeld, total }: CardAccountantInfoProps) {
   return (
     <>
-      <div className="min-w-72 md:min-w-96 flex flex-col rounded border border-slate-200 p-12">
+      <div className="min-w-72 md:min-w-96 flex flex-col rounded border border-slate-200 p-10">
         <p className="text-sm md:text-lg font-medium text-slate-900">
           Total de dias: <span className="text-lg font-semibold">{total}</span>
         </p>
