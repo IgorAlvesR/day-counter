@@ -4,6 +4,7 @@ import {
 } from '@/services/AccountDayPersistenceService'
 import { saveAccountantInfo } from '@/useCases/saveAccountantInfo'
 import { useState, useEffect } from 'react'
+import { toast } from 'sonner'
 
 export function useDayCountInfo(service: DayCountPersistenceService) {
   const [dayCountInfo, setDayCountInfo] = useState<DayCountInfo>({
@@ -11,20 +12,29 @@ export function useDayCountInfo(service: DayCountPersistenceService) {
     lastDayHeld: null,
   })
 
-  const { lastDayHeld, total } = service.getAccountInfo()
-
   useEffect(() => {
-    setDayCountInfo(() => ({ lastDayHeld, total }))
-  }, [lastDayHeld, total])
+    const { lastDayHeld, total } = service.getAccountInfo()
+    setDayCountInfo({ lastDayHeld, total })
+  }, [service])
 
   const saveDayCountInfo = () => {
     const totalUpdated = dayCountInfo.total + 1
     const dateUpdated = new Date()
-    setDayCountInfo({
-      total: totalUpdated,
-      lastDayHeld: dateUpdated,
-    })
-    saveAccountantInfo(service, totalUpdated, dateUpdated)
+
+    try {
+      saveAccountantInfo(service, totalUpdated, dateUpdated)
+      setDayCountInfo({
+        total: totalUpdated,
+        lastDayHeld: dateUpdated,
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error('Ops!', {
+          description: error.message,
+          closeButton: true,
+        })
+      }
+    }
   }
 
   const resetInfoDay = () => {

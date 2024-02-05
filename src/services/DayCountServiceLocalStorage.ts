@@ -15,13 +15,11 @@ export default class DayCountServiceLocalStorage
         lastDayHeld: null,
       }
     }
-
-    const accountDayInfo = JSON.parse(storage) as DayCountInfo
-
-    return {
-      total: accountDayInfo.total,
-      lastDayHeld: accountDayInfo.lastDayHeld,
-    }
+    const accountDayInfo = {
+      total: JSON.parse(storage).total,
+      lastDayHeld: new Date(`${JSON.parse(storage).lastDayHeld}`),
+    } as DayCountInfo
+    return accountDayInfo
   }
 
   save(total: number, lastDayHeld: Date): void {

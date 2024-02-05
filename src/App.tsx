@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner'
 import AlertConfirm from './components/AlertConfirm'
 import CardAccountantInfo from './components/CardAccountantInfo'
 import { Button } from './components/ui/button'
@@ -6,13 +7,14 @@ import { useDayCountInfo } from './hooks/useDayCountInfo'
 import DayCountServiceLocalStorage from './services/DayCountServiceLocalStorage'
 import { PlusCircle, MinusCircle, Tally5 } from 'lucide-react'
 
+const service = new DayCountServiceLocalStorage()
 function App() {
-  const service = new DayCountServiceLocalStorage()
   const { dayCountInfo, saveDayCountInfo, resetInfoDay } =
     useDayCountInfo(service)
 
   return (
     <main className="md:flex-col flex justify-center items-center h-screen mx-2">
+      <Toaster />
       <div className="w-full border px-2 md:px-auto py-16 rounded border-slate-200 space-y-12 mx-2 md:mx-auto max-w-4xl flex flex-col items-center">
         <section className="flex flex-col items-center">
           <Tally5 size="50" />
