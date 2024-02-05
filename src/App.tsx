@@ -6,14 +6,28 @@ import './globals.css'
 import { useDayCountInfo } from './hooks/useDayCountInfo'
 import DayCountServiceLocalStorage from './services/DayCountServiceLocalStorage'
 import { PlusCircle, MinusCircle, Tally5 } from 'lucide-react'
+import ConfettiEffect from './components/Confetti'
+import useConfettiActive from './hooks/useConfettiActive'
+import { isMultipleOfTen } from './helpers/math'
 
 const service = new DayCountServiceLocalStorage()
+
 function App() {
   const { dayCountInfo, saveDayCountInfo, resetInfoDay } =
     useDayCountInfo(service)
 
+  const { confettiActive, handleActiveConfetti } = useConfettiActive()
+
+  function handleAddDay() {
+    const total = saveDayCountInfo()
+    if (total && !!isMultipleOfTen(total)) {
+      handleActiveConfetti()
+    }
+  }
+
   return (
     <main className="md:flex-col flex justify-center items-center h-screen mx-2">
+      <ConfettiEffect active={confettiActive} />
       <Toaster />
       <div className="w-full border px-2 md:px-auto py-16 rounded border-slate-200 space-y-12 mx-2 md:mx-auto max-w-4xl flex flex-col items-center">
         <section className="flex flex-col items-center">
@@ -29,7 +43,7 @@ function App() {
             lastDayHeld={dayCountInfo.lastDayHeld}
           />
           <div className="flex gap-2 w-full">
-            <Button className="w-full" onClick={saveDayCountInfo}>
+            <Button className="w-full" onClick={handleAddDay}>
               <PlusCircle className="mr-1 h-4 w-4" />
               Adicionar +1
             </Button>

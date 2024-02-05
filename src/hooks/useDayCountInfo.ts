@@ -17,7 +17,7 @@ export function useDayCountInfo(service: DayCountPersistenceService) {
     setDayCountInfo({ lastDayHeld, total })
   }, [service])
 
-  const saveDayCountInfo = () => {
+  const saveDayCountInfo: () => number | null = () => {
     const totalUpdated = dayCountInfo.total + 1
     const dateUpdated = new Date()
 
@@ -27,6 +27,7 @@ export function useDayCountInfo(service: DayCountPersistenceService) {
         total: totalUpdated,
         lastDayHeld: dateUpdated,
       })
+      return totalUpdated
     } catch (error) {
       if (error instanceof Error) {
         toast.error('Ops!', {
@@ -34,6 +35,7 @@ export function useDayCountInfo(service: DayCountPersistenceService) {
           closeButton: true,
         })
       }
+      return null
     }
   }
 
