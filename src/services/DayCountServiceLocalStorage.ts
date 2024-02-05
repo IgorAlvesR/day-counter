@@ -9,7 +9,7 @@ export default class DayCountServiceLocalStorage
   getAccountInfo(): DayCountInfo {
     const storage = localStorage.getItem('day-counter')
 
-    if (!storage) {
+    if (!storage || !JSON.parse(storage).lastDayHeld) {
       return {
         total: 0,
         lastDayHeld: null,
@@ -17,7 +17,7 @@ export default class DayCountServiceLocalStorage
     }
     const accountDayInfo = {
       total: JSON.parse(storage).total,
-      lastDayHeld: new Date(`${JSON.parse(storage).lastDayHeld}`),
+      lastDayHeld: new Date(JSON.parse(storage).lastDayHeld),
     } as DayCountInfo
     return accountDayInfo
   }
