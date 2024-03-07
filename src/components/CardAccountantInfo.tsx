@@ -6,11 +6,36 @@ type CardAccountantInfoProps = {
 function CardAccountantInfo({ lastDayHeld, total }: CardAccountantInfoProps) {
   return (
     <>
-      <div className="min-w-72 md:min-w-96 flex flex-col rounded border border-slate-200 p-10">
-        <p className="text-sm md:text-lg font-medium text-slate-900">
+      <section className="min-w-72 gap-6 md:min-w-96 flex flex-col rounded border border-slate-200 p-10">
+        <div className="flex flex-col">
+          <span className="text-2xl font-semibold">{total}</span>
+          <span className="text-xs font-medium opacity-80">Dias seguidos</span>
+        </div>
+
+        <div className="flex flex-col">
+          <span className="text-2xl font-semibold">
+            {lastDayHeld
+              ? new Date(lastDayHeld).toLocaleDateString()
+              : 'dd/mm/yyyy'}
+          </span>
+          <span className="text-xs font-medium opacity-80">
+            Último dia realizado
+          </span>
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default CardAccountantInfo
+
+/* 
+
+<div className="min-w-72 md:min-w-96 flex flex-col rounded border border-slate-200 p-10">
+        <p className="text-md md:text-lg font-medium text-slate-900">
           Total de dias: <span className="text-lg font-semibold">{total}</span>
         </p>
-        <p className="text-sm md:text-lg font-medium text-slate-800">
+        <p className="text-md md:text-lg font-medium text-slate-800">
           Último dia realizado:
           <span className="text-md font-semibold ml-1">
             {lastDayHeld
@@ -19,8 +44,4 @@ function CardAccountantInfo({ lastDayHeld, total }: CardAccountantInfoProps) {
           </span>
         </p>
       </div>
-    </>
-  )
-}
-
-export default CardAccountantInfo
+*/
