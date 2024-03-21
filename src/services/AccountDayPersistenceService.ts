@@ -6,4 +6,5 @@ export type DayCountInfo = {
 export interface DayCountPersistenceService {
   save(total: number, lastDayHeld: Date | null): void
   getAccountInfo(): DayCountInfo
+  edit(total: number): DayCountInfo | null
 }

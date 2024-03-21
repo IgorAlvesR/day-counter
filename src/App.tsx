@@ -5,21 +5,22 @@ import { Button } from './components/ui/button'
 import './globals.css'
 import { useDayCountInfo } from './hooks/useDayCountInfo'
 import DayCountServiceLocalStorage from './services/DayCountServiceLocalStorage'
-import { PlusCircle, MinusCircle, Tally5 } from 'lucide-react'
+import { PlusCircle, MinusCircle, Tally5, Pencil } from 'lucide-react'
 import ConfettiEffect from './components/Confetti'
 import useConfettiActive from './hooks/useConfettiActive'
 import { isMultipleOfTen } from './helpers/math'
+import { DialogEditDay } from './components/DialogEditDay'
+import { editAccountantInfo } from './useCases/saveAccountantInfo'
 
 const service = new DayCountServiceLocalStorage()
 
 function App() {
-  const { dayCountInfo, saveDayCountInfo, resetInfoDay } =
+  const { dayCountInfo, onSaveDayCountInfo, setDayCountInfo, resetInfoDay } =
     useDayCountInfo(service)
 
   const { confettiActive, handleActiveConfetti } = useConfettiActive()
 
-  function handleAddDay() {
-    const total = saveDayCountInfo()
+  function showCongratulations(total: number) {
     if (total && !!isMultipleOfTen(total)) {
       handleActiveConfetti()
       toast.success(
@@ -32,10 +33,27 @@ function App() {
     }
   }
 
+  function handleAddDay() {
+    const total = onSaveDayCountInfo()
+    if (!total) return
+    showCongratulations(total)
+  }
+
+  function handleEditDay(total: number) {
+    const countDayInfo = editAccountantInfo(service, total)
+    if (!countDayInfo) return null
+    setDayCountInfo({
+      total: countDayInfo.total,
+      lastDayHeld: countDayInfo.lastDayHeld,
+    })
+    showCongratulations(countDayInfo.total)
+  }
+
   return (
     <main className="md:flex-col flex justify-center md:items-center h-screen mx-2">
       <ConfettiEffect active={confettiActive} />
       <Toaster />
+
       <div className="w-full sm:border px-2 md:px-auto py-16 rounded sm:border-slate-200 space-y-32 mx-2 md:mx-auto max-w-4xl flex flex-col items-center">
         <section className="flex flex-col items-center">
           <Tally5 size="50" />
@@ -48,7 +66,18 @@ function App() {
           <CardAccountantInfo
             total={dayCountInfo.total}
             lastDayHeld={dayCountInfo.lastDayHeld}
-          />
+          >
+            {dayCountInfo.total > 0 && (
+              <DialogEditDay
+                total={dayCountInfo.total}
+                onSaveDay={handleEditDay}
+                className="self-start"
+              >
+                <Pencil className="w-8 h-8 hover:bg-slate-200 p-2 rounded cursor-pointer transition-all" />
+              </DialogEditDay>
+            )}
+          </CardAccountantInfo>
+
           <div className="flex gap-2 w-full flex-col">
             <AlertConfirm
               title="Deseja realmente zerar as informações ?"

@@ -1,4 +1,7 @@
-import { DayCountPersistenceService } from '../services/AccountDayPersistenceService'
+import {
+  DayCountInfo,
+  DayCountPersistenceService,
+} from '../services/AccountDayPersistenceService'
 
 export function saveAccountantInfo(
   persistenceService: DayCountPersistenceService,
@@ -14,4 +17,11 @@ export function saveAccountantInfo(
     throw new Error('Você já registrou o dia de hoje.')
   }
   persistenceService.save(total, lastDayHeld)
+}
+
+export function editAccountantInfo(
+  persistenceService: DayCountPersistenceService,
+  total: number,
+): DayCountInfo | null {
+  return persistenceService.edit(total)
 }

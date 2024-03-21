@@ -17,7 +17,7 @@ export function useDayCountInfo(service: DayCountPersistenceService) {
     setDayCountInfo({ lastDayHeld, total })
   }, [service])
 
-  const saveDayCountInfo: () => number | null = () => {
+  const onSaveDayCountInfo: () => number | null = () => {
     const totalUpdated = dayCountInfo.total + 1
     const dateUpdated = new Date()
 
@@ -46,7 +46,8 @@ export function useDayCountInfo(service: DayCountPersistenceService) {
   }
 
   return {
-    saveDayCountInfo,
+    onSaveDayCountInfo,
+    setDayCountInfo,
     resetInfoDay,
     dayCountInfo,
   }
