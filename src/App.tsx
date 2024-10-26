@@ -84,14 +84,15 @@ function App() {
               description="Esta ação é irreversível, seus dados serão perdidos."
               onConfirm={resetInfoDay}
             >
-              <Button variant="outline" className="w-full px-4 py-6">
+              <Button size="sm" variant="outline" className="w-full">
                 <MinusCircle className="mr-1 h-4 w-4" />
                 Zerar
               </Button>
             </AlertConfirm>
 
             <Button
-              className="w-full px-4 py-6 min-h-[50px]"
+              size="lg"
+              className="w-full h-full px-4 py-6 min-h-[50px]"
               onClick={handleAddDay}
             >
               <PlusCircle className="mr-1 h-4 w-4" />
