@@ -24,7 +24,7 @@ function App() {
     if (total && !!isMultipleOfTen(total)) {
       handleActiveConfetti()
       toast.success(
-        `Parabéns, você completou ${total} dias praticando Ho'oponopono!`,
+        `Parabéns, você completou ${total} dias!`,
         {
           position: 'top-center',
           style: { background: '#009688', color: 'white' },
@@ -58,7 +58,7 @@ function App() {
         <section className="flex flex-col items-center">
           <Tally5 size="50" />
           <h1 className="text-2xl md:text-3xl text-center md:text-start font-bold">
-            Dias praticando Ho&apos;oponopono
+            Dias praticando alguma atividade
           </h1>
         </section>
 

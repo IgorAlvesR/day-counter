@@ -8,9 +8,14 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      devOptions: {
-        enabled: true,
-      },
+      manifest: {
+        name: "Contador",
+        short_name: "Contador",
+        start_url: ".",
+        display: "standalone",
+        background_color: "#ffffff",
+        theme_color: "#000000",
+      },       
     }),
   ],
   resolve: {
